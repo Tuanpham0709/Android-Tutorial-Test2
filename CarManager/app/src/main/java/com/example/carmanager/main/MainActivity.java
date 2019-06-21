@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.service.autofill.FieldClassification;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -28,13 +29,14 @@ import java.util.regex.Pattern;
 
 public class MainActivity extends AppCompatActivity {
     ArrayList<Car> listCar;
-    Button btnFind, btnAdd, btnSortPrice, btnSortYear, btnAddDialog;
+    Button btnFind, btnAdd, btnSortPrice, btnSortYear, btnShowAll;
     EditText edtFind, edtID, edtName, edtPrice, edtYear;
     ListView lvListCar;
     AlertDialog dialog;
     DBCarManager dbCarManager;
     View alertLayout;
     CarAdapter carAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 findCar();
+            }
+        });
+        btnShowAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                configListView(dbCarManager.getAllCar());
             }
         });
         dbCarManager = new DBCarManager(this);
@@ -97,14 +105,13 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<Car> listCarFind = new ArrayList<>();
         listCar = dbCarManager.getAllCar();
         for(Car c:listCar){
-            if (edtFind.getText().toString().equalsIgnoreCase(String.valueOf(c.getmId()))
+            if ((edtFind.getText().toString()).equalsIgnoreCase(String.valueOf(c.getmId()))
                     || edtFind.getText().toString().equalsIgnoreCase(c.getmName())
-                    || edtFind.getText().toString().equalsIgnoreCase(String.valueOf(c.getmYear())) ){
+                    || edtFind.getText().toString().equalsIgnoreCase(String.valueOf((int)Math.round(c.getmPrice()))) ){
                 listCarFind.add(c);
             }
-
         }
-        if(listCarFind.size() >= 0 ){
+        if(listCarFind.size() > 0 ){
             configListView(listCarFind);
         }else{
             Toast.makeText(this, "Deo tim thay car nao", Toast.LENGTH_SHORT).show();
@@ -241,7 +248,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void init() {
-
+        btnShowAll = findViewById(R.id.btn_show_all);
         btnAdd = findViewById(R.id.btn_add_car);
         btnFind = findViewById(R.id.btn_find);
         btnSortPrice = findViewById(R.id.btn_sort_by_price);
