@@ -1,0 +1,83 @@
+<LinearLayout android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:background="@drawable/img_background_carmanager"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="200dp">
+        <TextView
+            android:textStyle="bold"
+            android:layout_marginTop="30dp"
+            android:textSize="26sp"
+            android:gravity="center"
+            android:text="CAR MANAGER"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+       <LinearLayout
+           android:layout_marginTop="40dp"
+           android:orientation="horizontal"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content">
+           <Button
+               android:id="@+id/btn_find"
+               android:textColor="#ffffff"
+               android:text="FIND"
+               android:layout_marginLeft="40dp"
+               android:background="@drawable/btn_pressed_selected"
+               android:layout_marginRight="20dp"
+               android:layout_width="60dp"
+               android:layout_height="40dp" />
+           <EditText
+               android:padding="10dp"
+               android:id="@+id/edt_find"
+               android:background="@drawable/background_edt_find"
+               android:hint="Find"
+               android:layout_marginRight="40dp"
+               android:layout_width="match_parent"
+               android:layout_height="40dp" />
+       </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_marginTop="2dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="3"
+        >
+        <Button
+            android:id="@+id/btn_add_car"
+            android:textColor="#ffffff"
+            android:text="ADD CAR"
+            android:layout_marginLeft="1dp"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/btn_selected_pressed"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_sort_by_price"
+            android:textColor="#ffffff"
+            android:text="SORT BY PRICE"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/btn_selected_pressed"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_sort_by_year"
+            android:textColor="#ffffff"
+            android:text="SORT BY YEAR"
+            android:layout_marginRight="1dp"
+            android:background="@drawable/btn_selected_pressed"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/lv_list_car"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></ListView>
+    </LinearLayout>
